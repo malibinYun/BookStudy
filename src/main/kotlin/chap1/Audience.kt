@@ -1,5 +1,9 @@
 package chap1
 
 data class Audience(
-    val bag: Bag,
-)
+    private val bag: Bag,
+) {
+    fun buy(ticket: Ticket): Long {
+        return bag.hold(ticket)
+    }
+}

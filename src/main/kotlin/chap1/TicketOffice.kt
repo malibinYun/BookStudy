@@ -6,15 +6,20 @@ class TicketOffice(
 ) {
     constructor(amount: Long, vararg tickets: Ticket) : this(amount, mutableListOf(*tickets))
 
-    fun getTicket(): Ticket {
+    fun sellTicketTo(audience: Audience){
+        val fee = audience.buy(getTicket())
+        plusAmount(fee)
+    }
+
+    private fun getTicket(): Ticket {
         return tickets.removeAt(0)
     }
 
-    fun plusAmount(amount: Long) {
+    private fun plusAmount(amount: Long) {
         this.amount += amount
     }
 
-    fun minusAmount(amount: Long) {
+    private fun minusAmount(amount: Long) {
         this.amount -= amount
     }
 }
